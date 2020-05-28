@@ -40,7 +40,7 @@ export const getLogs = () => async (dispatch) => {
 export const addLog = (log) => async (dispatch) => {
   try {
     setLoading();
-    log.date = Date.now();
+    log.date = new Date();
     const res = await fetch("/logs", {
       method: "post",
       body: JSON.stringify(log),
@@ -71,7 +71,7 @@ export const deleteLog = (id) => async (dispatch) => {
 export const updateLog = (log) => async (dispatch) => {
   try {
     setLoading();
-    log.date = Date.now();
+    log.date = new Date();
     const res = await fetch(`/logs/${log.id}`, {
       method: "put",
       body: JSON.stringify(log),
@@ -80,6 +80,20 @@ export const updateLog = (log) => async (dispatch) => {
     const data = await res.json();
 
     dispatch({ type: UPDATE_LOG, payload: data });
+  } catch (err) {
+    dispatch({ type: LOGS_ERROR, payload: err.response.data });
+  }
+};
+
+// Search logs
+export const searchLogs = (text) => async (dispatch) => {
+  try {
+    setLoading();
+
+    const res = await fetch(`/logs?q=${text}`);
+    const data = await res.json();
+
+    dispatch({ type: SEARCH_LOGS, payload: data });
   } catch (err) {
     dispatch({ type: LOGS_ERROR, payload: err.response.data });
   }

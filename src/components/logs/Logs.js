@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import LogItem from "./LogItem";
 import Preloader from "../layout/Preloader";
@@ -11,7 +11,7 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
     // eslint-disable-next-line
   }, []);
 
-  if (loading) {
+  if (loading || logs === null) {
     return <Preloader />;
   }
 
@@ -22,7 +22,7 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
           System Logs
         </h4>
       </li>
-      {!loading && (logs === null || logs.length === 0) ? (
+      {!loading && logs.length === 0 ? (
         <p className="center">No logs to show...</p>
       ) : (
         logs.map((log) => <LogItem log={log} key={log.id} />)
