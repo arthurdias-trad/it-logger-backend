@@ -67,6 +67,34 @@ export const deleteLog = (id) => async (dispatch) => {
   }
 };
 
+// Update log on db
+export const updateLog = (log) => async (dispatch) => {
+  try {
+    setLoading();
+    log.date = Date.now();
+    const res = await fetch(`/logs/${log.id}`, {
+      method: "put",
+      body: JSON.stringify(log),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+
+    dispatch({ type: UPDATE_LOG, payload: data });
+  } catch (err) {
+    dispatch({ type: LOGS_ERROR, payload: err.response.data });
+  }
+};
+
+// Set current log
+export const setCurrent = (log) => (dispatch) => {
+  dispatch({ type: SET_CURRENT, payload: log });
+};
+
+// Clear current log
+export const clearCurrent = () => (dispatch) => {
+  dispatch({ type: CLEAR_CURRENT });
+};
+
 // Set loading to true
 export const setLoading = () => {
   return { type: SET_LOADING };
