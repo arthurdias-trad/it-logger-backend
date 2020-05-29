@@ -17,3 +17,7 @@ Server [http://localhost:5000](http://localhost:5000)
 Runs both the backend and the front-end at the same time (you can use Brad's front-end or create your own).
 Open [http://localhost:3000](http://localhost:3000)
 Server [http://localhost:5000](http://localhost:5000)
+
+## TO-DOS
+
+- The ITLogger is still lacking the search functionality. However, CRUD has been implemented for both Techs and Logs.

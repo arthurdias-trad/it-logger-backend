@@ -22,10 +22,10 @@ exports.getTechs = async (req, res, next) => {
 // @access  Public
 exports.addTech = async (req, res, next) => {
   if (req.body.firstName && req.body.lastName) {
-    const newTech = req.body;
+    const newTech = new Tech(req.body);
 
     try {
-      const tech = await Tech.create(newTech);
+      const tech = await newTech.save();
 
       return res.status(201).json({
         success: true,
@@ -60,7 +60,7 @@ exports.deleteTech = async (req, res, next) => {
         error: "Technician not found",
       });
     }
-    await tech.delete();
+    await tech.remove();
 
     res.status(201).json({
       success: true,

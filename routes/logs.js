@@ -1,21 +1,13 @@
 const router = require("express").Router();
+const path = require("path");
+const { getLogs, addLog, updateLog, deleteLog } = require(path.join(
+  "..",
+  "controllers",
+  "logs"
+));
 
-router
-  .route("/")
-  .get((req, res) => {
-    res.status(200).send("Get all logs");
-  })
-  .post((req, res) => {
-    res.status(201).send("Add log: " + JSON.stringify(req.body));
-  });
+router.route("/").get(getLogs).post(addLog);
 
-router
-  .route("/:id")
-  .put((req, res) => {
-    res.status(201).send("Update log with ID: " + req.params.id);
-  })
-  .delete((req, res) => {
-    res.status(201).send("Delete log with ID: " + req.params.id);
-  });
+router.route("/:id").put(updateLog).delete(deleteLog);
 
 module.exports = router;
