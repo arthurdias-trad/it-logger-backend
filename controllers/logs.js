@@ -7,7 +7,19 @@ const Tech = require(path.join("..", "models", "Tech"));
 // @access  Public
 exports.getLogs = async (req, res, next) => {
   try {
-    const logs = await Log.find();
+    let query = {};
+
+    if (req.query.q) {
+      let { q } = req.query;
+      query = {
+        $or: [
+          { tech: { $regex: q, $options: "i" } },
+          { message: { $regex: q, $options: "i" } },
+        ],
+      };
+    }
+
+    const logs = await Log.find(query);
 
     return res.status(200).json({
       success: true,
