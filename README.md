@@ -14,10 +14,6 @@ Server [http://localhost:5000](http://localhost:5000)
 
 ### `npm run dev`
 
-Runs both the backend and the front-end at the same time (you can use Brad's front-end or create your own).
+Runs both the backend and the front-end at the same time. You can use Brad's front-end or create your own. However, if you do choose to use Brad's front end, you will need to adapt some of the actions and reducers, as this server responses differs from the one given by the JSON server.
 Open [http://localhost:3000](http://localhost:3000)
 Server [http://localhost:5000](http://localhost:5000)
-
-## TO-DOS
-
-- The ITLogger is still lacking the search functionality. However, CRUD has been implemented for both Techs and Logs.
