@@ -20,4 +20,4 @@ Server [http://localhost:5000](http://localhost:5000)
 
 ### Live Demo
 
-A live demo is available [here](https://thawing-earth-03803.herokuapp.com/)
+A live demo is available [here](https://thawing-earth-03803.herokuapp.com/).
