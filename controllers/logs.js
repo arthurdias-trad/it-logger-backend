@@ -87,6 +87,10 @@ exports.updateLog = async (req, res, next) => {
 
     req.body._tech = tech._id;
 
+    req.body.date = Date.now();
+
+    console.log(req.body);
+
     log = await Log.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
     return res.status(201).json({
